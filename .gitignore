@@ -1,0 +1,13 @@
+.venv
+db.sqlite3
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+
+*.db
+*.sqlite3
+
+
