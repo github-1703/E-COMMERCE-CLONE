@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager,AbstractBaseUser
-# Create your models here.
+
+# .# This class handles the logic for creating users. It contains two functions: one for normal users and one for superusers (admins).
+
 class MyAccountManager(BaseUserManager):
     def create_user(self,first_name,last_name,username,email, password=None):
         if not email:
@@ -22,11 +24,12 @@ class MyAccountManager(BaseUserManager):
     
     
     def create_superuser(self,first_name,last_name,username,email, password):
+        
        user=self.create_user(
-                             email = self.normalize_email(email),
-                               username=username,
                                first_name=first_name,
                                last_name=last_name,
+                               username=username,
+                               email = self.normalize_email(email),
                                password=password
        )
        
@@ -54,7 +57,10 @@ class Account(AbstractBaseUser):
     is_active=models.BooleanField(default=False)
     is_superadmin=models.BooleanField(default=False)
     
+    # This tells Django: "Forget usernames. When a user logs in, treat the email field as their primary credential."
     USERNAME_FIELD='email'
+    
+    #A list of prompts Django will ask for in the terminal when you run the python manage.py createsuperuser
     REQUIRED_FIELDS=['username','first_name','last_name']
     
     #we are using myaccount manager so have to say``
