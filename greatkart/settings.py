@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'category.context_processors.global_categories',
             ],
         },
     },
@@ -125,5 +126,9 @@ STATICFILES_DIRS=[
     'greatkart/static',
 ]
 
+
+# # • This is the URL prefix that the outside world (the web browser) uses to look up and download those images.
+# • How it works: When your HTML template writes {{ products.images.url }}, Django translates that into a public web link. It tells the browser, "Go fetch this image from http://127.0.0."
 MEDIA_URL='/media/'
-MEDIA_ROOT='BASE_DIR/mediafiles'
+MEDIA_ROOT=BASE_DIR/ 'media'
+#  This tells Django the exact physical location on your computer's hard drive where it should save uploaded files.
