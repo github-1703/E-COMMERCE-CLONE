@@ -1,5 +1,6 @@
 from django.db import models
 from category.models import Category
+from django.urls import reverse
 # Create your models here.
 
 #we created a product field. It comes under the categroy.
@@ -15,5 +16,11 @@ class Product(models.Model):
     created_date=models.DateTimeField(auto_now_add=True)
     modified_date=models.DateTimeField(auto_now=True)
     
+    def get_urls(self):
+        return reverse('product_name',args=[self.category.slug,self.slug])
+    #self.slug mean slug of Product field which is defined in class Product here cat is foreign key so acess 
+    
     def __str__(self):
         return self.product_name
+    
+    
